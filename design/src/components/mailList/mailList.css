@@ -7,6 +7,7 @@
   align-items: center;
   flex-direction: column;
   gap: 20px;
+  padding: 20px 0px;
 }
 .mailInputContainer > input {
   width: 300px;
