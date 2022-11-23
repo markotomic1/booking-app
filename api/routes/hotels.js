@@ -5,20 +5,20 @@ const {
   getHotel,
   getAllHotels,
 } = require("../controlers/hotel");
-const Hotel = require("../models/Hotel");
+const { verifyAdmin } = require("../utils/verifyToken");
 const router = require("express").Router();
 
 // Create
 
-router.post("/", createHotel);
+router.post("/", verifyAdmin, createHotel);
 
 //Update
 
-router.put("/:id", updateHotel);
+router.put("/:id", verifyAdmin, updateHotel);
 
 // Delete
 
-router.delete("/:id", deleteHotel);
+router.delete("/:id", verifyAdmin, deleteHotel);
 
 // Get
 router.get("/:id", getHotel);
