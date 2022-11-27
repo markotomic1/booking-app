@@ -25,3 +25,18 @@
   cursor: pointer;
   border-radius: 2px;
 }
+.logoutUser {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+}
+.logout {
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  background-color: rgb(84, 84, 153);
+  color: white;
+  font-weight: bold;
+  padding: 10px 15px;
+}

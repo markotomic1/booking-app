@@ -7,6 +7,7 @@ const usersRoute = require("./routes/users");
 const hotelsRoute = require("./routes/hotels");
 const roomsRoute = require("./routes/rooms");
 const cookieParser = require("cookie-parser");
+const cors = require("cors");
 const connect = async () => {
   try {
     await mongoose.connect(process.env.MONGO_URI);
@@ -19,6 +20,7 @@ const connect = async () => {
 //middlewares
 app.use(cookieParser());
 app.use(express.json());
+app.use(cors());
 
 app.use("/api/auth", authRoute);
 app.use("/api/users", usersRoute);
