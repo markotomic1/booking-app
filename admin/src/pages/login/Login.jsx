@@ -1,7 +1,7 @@
 import { useContext, useState } from "react";
 import { AuthContext } from "../../context/AuthContext";
 import { useNavigate } from "react-router-dom";
-import "./login.css";
+import "./login.scss";
 import axios from "axios";
 
 const Login = () => {
@@ -21,10 +21,17 @@ const Login = () => {
 
     try {
       const res = await axios.post("/auth/login", credentials);
-      dispatch({ type: "LOGIN_SUCCESS", payload: res.data.details });
-      navigate("/");
+      if (res.data.isAdmin) {
+        dispatch({ type: "LOGIN_SUCCESS", payload: res.data.details });
+        navigate("/");
+      } else {
+        dispatch({
+          type: "LOGIN_FAILURE",
+          payload: { message: "You are not allowed" },
+        });
+      }
     } catch (error) {
-      dispatch({ type: "LOGIN_FAILURE" });
+      dispatch({ type: "LOGIN_FAILURE", payload: error.response.data });
     }
   };
   return (
